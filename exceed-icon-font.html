@@ -109,7 +109,7 @@
           var env;
           $(function(){
             $('#demo-github').click(function(){
-              $(this).toggle('active');
+              $(this).toggleClass('active');
             })
           })
 
@@ -141,7 +141,7 @@
           var socket = io.connect('http://localhost:3000');
 
           socket.on('animate', function(){
-            $('#demo-github').toggle('active');
+            $('#demo-github').toggleClass('active');
           })
         </script>
 </head>
