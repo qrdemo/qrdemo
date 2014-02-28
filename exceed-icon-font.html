@@ -113,15 +113,6 @@
             })
           })
 
-          // hash change
-          $(window).on('hashchange', function(){
-            if (window.location.hash.indexOf('#/6') !== -1) {
-              $('#qrcode').fadeIn();
-            } else {
-              $('#qrcode').hide();
-            }
-          })
-
           $.ajax({
             url: 'http://localhost:3000/getEnv',
             dataType: 'jsonp',
