@@ -2,12 +2,12 @@
   font-family: "coloriocn";
   font-style: normal;
   font-weight: 400;
-  src: url("http://stackicons.com/fonts/Stackicons/Stackicons-Social.eot");
+  src: url("../../font/Stackicons-Social.eot");
   src: 
-    url("http://stackicons.com/fonts/Stackicons/Stackicons-Social.eot?#iefix") format("embedded-opentype"),
-    url("http://stackicons.com/fonts/Stackicons/Stackicons-Social.woff") format("woff"),
-    url("http://stackicons.com/fonts/Stackicons/Stackicons-Social.ttf") format("truetype"), 
-    url("http://stackicons.com/fonts/Stackicons/Stackicons-Social.svg#coloriocn") format("svg");
+    url("../../font/Stackicons-Social.eot?#iefix") format("embedded-opentype"),
+    url("../../font/Stackicons-Social.woff") format("woff"),
+    url("../../font/Stackicons-Social.ttf") format("truetype"), 
+    url("../../font/Stackicons-Social.svg#coloriocn") format("svg");
 }
 
 #demo-github .iconfont {
