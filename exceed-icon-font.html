@@ -277,6 +277,9 @@
                 ]
             });
 
+            $('canvas').on('click', function(){
+              socket.emit('clear');
+            });
         </script>
 </body>
   </html>
