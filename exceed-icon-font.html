@@ -95,10 +95,10 @@
                 margin: auto !important;
             }
             #qrcode{
-              display: none;
-              position: absolute;
+              position: fixed;
+              z-index: 9999;
               top: 0;
-              right: 0;
+              right: -100px;
               width: 300px;
             }
         </style>
@@ -149,7 +149,6 @@
 <body>
 
   <div class="reveal">
-    <canvas id="qrcode"></canvas>
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
       <section data-background-transition="slide" data-background="img/iOS7-icon-grid.svg">
@@ -219,8 +218,9 @@
 
         <section>
           <h2>多彩图标</h2>
-          <div class="demo" id="demo-github">
-            <div class="iconfont icon-github">
+          <canvas id="qrcode" class="fragment" data-fragment-index="5"></canvas>
+          <div class="demo fragment" id="demo-github" data-fragment-index="1">
+            <div class="iconfont icon-github fragment" data-fragment-index="2">
               <span></span>
             </div>
           </div>
