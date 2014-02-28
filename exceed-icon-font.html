@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  -->
+  <title>超越 icon font</title>
+
+  <meta name="author" content="yisi">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="超越 icon font">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <link rel="stylesheet" href="css/demo/icon-github.css">
+
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <style>
+
+            .summary .line{
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            .summary .line a {
+                display: table-cell;
+                vertical-align: middle;
+                width: 180px;
+                text-align: center;
+            }
+            .summary .content{
+                display: table-cell;
+                vertical-align: middle;
+                padding-left: 20px;
+                text-align: left;
+                overflow: hidden;
+                *zoom:1;
+            }
+            .powered {
+                position: fixed;
+                left: 20px;
+                bottom: 20px;
+                color: #555;
+            }
+
+            .powered p {
+                margin: 6px auto;
+            }
+
+            .powered a {
+                color: #555;
+            }
+            .reveal[data-background-transition=slide]>.backgrounds .slide-background, .reveal>.backgrounds .slide-background[data-background-transition=slide] {
+                background-size: 80%;
+                background-position: 50% 30px;
+            }
+            .reveal .author {
+                margin-top: 100px;
+            }
+            .reveal .title {
+                margin-top: 60px;
+            }
+
+            .icon-box {
+                position: relative;
+                background: url(img/photo-icon.svg) 50% 50% no-repeat;
+                background-size: 66%;
+            }
+            .icon-box img {
+                width: 66%;
+            }
+            .fade-box{
+                position: relative;
+                min-height: 500px;
+            }
+            .fade-box img{
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto !important;
+            }
+            #qrcode{
+              display: none;
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 300px;
+            }
+        </style>
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="js/socket.io.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.min.js"></script>
+        <script type="text/javascript">
+          var env;
+          $(function(){
+            $('#demo-github').click(function(){
+              $(this).toggle('active');
+            })
+          })
+
+          // hash change
+          $(window).on('hashchange', function(){
+            if (window.location.hash.indexOf('#/6') !== -1) {
+              $('#qrcode').fadeIn();
+            } else {
+              $('#qrcode').hide();
+            }
+          })
+
+          $.ajax({
+            url: 'http://localhost:3000/getEnv',
+            dataType: 'jsonp',
+            success: function(data){
+              env = data;
+
+              // draw qrcode
+              var qrcodedraw = new QRCodeLib.QRCodeDraw();
+              var request = ['http://', env.ip, ':', env.port, '/client'].join('');
+              qrcodedraw.draw(document.getElementById('qrcode'), request, function(error,canvas){
+                if(error){
+                  return console.log('Error =( ',error);
+                }
+              });
+            }
+          })
+          var socket = io.connect('http://localhost:3000');
+
+          socket.on('animate', function(){
+            $('#demo-github').toggle('active');
+          })
+        </script>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <canvas id="qrcode"></canvas>
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section data-background-transition="slide" data-background="img/iOS7-icon-grid.svg">
+        <h1 class="title">超越 icon font</h1>
+        <p class="author fragment">
+          <a href="http://www.iyunlu.com/view" traget="blank">一丝</a>
+          <br>2014-3-1 于杭州</p>
+      </section>
+
+      <section data-previous-indexv="2">
+        <h2>关于我</h2>
+        <div class="summary">
+
+          <div class="line fragment">
+            <a href="http://weibo.com/jieorlin/" target="_blank">
+              <img src="img/av.jpg" alt=""></a>
+            <div class="content">
+              <h3 class="user-name">一丝：</h3>
+              <p>阿里巴巴前端工程师</p>
+            </div>
+          </div>
+
+          <div class="line fragment">
+            <a href="http://weibo.com/fekb" target="_blank">
+              <img src="http://tp1.sinaimg.cn/3244329632/180/40023910983/0" alt=""></a>
+            <div class="content">
+              <p>「前端快爆」作者</p>
+            </div>
+          </div>
+
+          <ul class="fragment">
+            <li>
+              博客：
+              <a href="http://www.iyunlu.com/view">http://www.iyunlu.com/view</a>
+            </li>
+            <li>
+              微博：
+              <a href="http://t.qq.com/yisibl">http://t.qq.com/yisibl</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>iOS7 图标栅格</h2>
+        <p class="icon-box">
+          <img class="icon-photo fragment" src="img/iOS7-icon-grid.svg" alt="iOS7 photo icon"></p>
+      </section>
+
+      <section>
+        <h2>什么是 icon font？</h2>
+      </section>
+
+      <section>
+        <h2>相见不曾相识……</h2>
+        <p class="fragment">
+          <img src="img/sofish.png" alt="sofish"></p>
+      </section>
+
+      <section>
+        <h2>iOS 自带的字体图标</h2>
+        <div class="fade-box">
+          <img class="fragment" src="img/icon1.png" alt="">
+          <img class="fragment" src="img/icon2.png" alt="">
+          <img class="fragment" src="img/keybord.png" alt=""></div>
+      </section>
+
+        <section>
+          <h2>多彩图标</h2>
+          <div class="demo" id="demo-github">
+            <div class="iconfont icon-github">
+              <span></span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Q&A</h2>
+          <h3>Thank You ^_^</h3>
+        </section>
+      </div>
+
+    </div>
+
+    <div class="powered">
+      <p>超越 icon font</p>
+      <p>
+        Powered by
+        <a href="https://github.com/hakimel/reveal.js/" target="_blank">reveal.js</a>
+      </p>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                mouseWheel: false,
+                keyboard: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+</body>
+  </html>
