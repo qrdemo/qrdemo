@@ -120,28 +120,30 @@
           })
 
           $.ajax({
-            url: 'http://localhost:3000/getEnv',
+            url: 'http://localhost:3000/env',
             dataType: 'jsonp',
             success: function(data){
               env = data;
 
               // draw qrcode
               var qrcodedraw = new QRCodeLib.QRCodeDraw();
-              var request = ['http://', env.ip, ':', env.port, '/client'].join('');
-              qrcodedraw.draw(document.getElementById('qrcode'), request, function(error,canvas){
-                if(error){
-                  return console.log('Error =( ',error);
+              var request = ['http://', env.ip, ':', env.port, '/mobile/control'].join('');
+              qrcodedraw.draw(document.querySelector('#qrcode'), request, function(err){
+                if(err){
+                  return console.log(err.message);
                 }
               });
             }
           })
-          var socket = io.connect('http://localhost:3000');
 
-          socket.on('animate', function(){
-            if ($('#qrcode').css('display') !== 'none') {
-              $('#demo-github').toggleClass('active');
-            }
-          })
+          var socket = io.connect('http://localhost:3000');
+          socket.on('left', function(){
+            Reveal.left();
+          });
+
+          socket.on('right', function(){
+            Reveal.right();
+          });
         </script>
 </head>
 
@@ -150,6 +152,11 @@
   <div class="reveal">
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
+        <!-- qrcode -->
+        <section>
+          <canvas id="qrcode"></canvas>
+        </section>
+
         <!-- fragment -->
         <section data-background-transition="slide" data-background="img/Google_Chrome_Racer.jpg">
           <h1 class="title">从跨屏幕开始</h1>
@@ -183,18 +190,18 @@
                 使用封装的 tap 事件来代替click 事件
             </p>
             <p class="fragment">
-               tap 事件由 touchstart 事件 + touchmove 判断 + touchend 事件封装 
+               tap 事件由 touchstart 事件 + touchmove 判断 + touchend 事件封装
             </p>
             <p class="fragment">
                 <a href="https://github.com/ftlabs/fastclick">fastclick</a>
             </p>
         </section>
-        
+
         <section>
           <h6>Powered by</h6>
           <h2>Express, Socket.io</h2>
         </section>
-        
+
         <section>
           <h2>Q&A</h2>
           <h3>Thank You ^_^</h3>
@@ -206,10 +213,6 @@
 
     <div class="powered">
       <p>从跨屏幕开始</p>
-      <p>
-        Powered by
-        <a href="https://github.com/hakimel/reveal.js/" target="_blank">reveal.js</a>
-      </p>
     </div>
 <!--     <div class="mux-logo">
         <img src="http://gtms01.alicdn.com/tps/i1/T1PY5OFBXdXXcMmhDl-216-94.png" alt="">
