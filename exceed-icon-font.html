@@ -99,7 +99,13 @@
               z-index: 9999;
               top: 0;
               right: -100px;
-              width: 300px;
+              width: 320px;
+            }
+            .mux-logo {
+                position: fixed;
+                z-index: 999;
+                left: 20px;
+                top: 20px;
             }
         </style>
         <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
@@ -203,26 +209,191 @@
 
       <section>
         <h2>iOS 自带的字体图标</h2>
+        <p><a href="http://zh.wikipedia.org/wiki/%E7%B9%AA%E6%96%87%E5%AD%97">Emoji 绘文字</a></p>
         <div class="fade-box">
           <img class="fragment" src="img/icon1.png" alt="">
           <img class="fragment" src="img/icon2.png" alt="">
           <img class="fragment" src="img/keybord.png" alt=""></div>
       </section>
+      <section>
+          <h2>相见不曾相识……</h2>
+          <img src="http://gtms01.alicdn.com/tps/i1/T1rnyPFvNaXXc_0NYn-808-416.png" alt="">
+      </section>
+      <section>
+          <h2>扒衣见君</h2>
+          <img src="http://gtms03.alicdn.com/tps/i3/T1X5WPFAFiXXb7HNTn-808-381.png" alt="">
+      </section>
+
+      <section>
+          <h2>请欣赏高清无码</h2>
+          <h3><del>介绍片</del></h3>
+          <video style="width: 600px; height: 380px;" poster="img/cang.jpg" id="example_video_1_html5_api" class="vjs-tech" preload="none"  data-setup="{}" src="img/fontastic.fb3cbf53ae6c.mp4">
+          <source src="img/fontastic.fb3cbf53ae6c.mp4" type="video/mp4">
+          </video>
+      </section>
+
+      <section>
+          <h2>如何制作 icon font</h2>
+          <ul>
+              <li>iconfont.cn 直接上传 SVG <br>
+              <img src="img/up.png" alt=""></li>
+          </ul>
+      </section>
+
+      <section>
+          <h2>制作的注意事项</h2>
+          <img src="img/icon-g.png" alt="">
+      </section>
+
+      <section>
+          <h2>制作的注意事项</h2>
+          <img src="img/illustrator-endmark.png" alt="">
+      </section>
+
+      <section>
+          <h2>如何使用？</h2>
+          <p>1. 引用字体</p>
+<pre><code>
+@font-face {
+    font-family: 'FontName';
+    src: url('FileName.eot'); /* IE9+ */
+    src: url('FileName.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('FileName.woff') format('woff'), /* Chrome,Firefox */
+         url('FileName.ttf') format('truetype'), /* Chrome,Firefox,Opera,Safari,Android, iOS 4.2+ */
+         url('FileName.svg#FontName') format('svg'); /* iOS 4.1- */
+}
+</code></pre>
+      </section>
+            <section>
+          <h2>如何使用？</h2>
+          <p>2. 定义一个Class使用字体</p>
+<pre><code>
+.iconfont {
+    font-family: "iconfont";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    display: inline-block;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</code></pre>
+      </section>
+                  <section>
+          <h2>如何使用？</h2>
+          <p>3. 获取图标编码</p>
+<pre><code>
+<span class="iconfont">#3301</span>
+</code></pre>
+      </section>
+
+      <section>
+          <h2>为何要用 icon font？</h2>
+      </section>
+
 
         <section>
-          <h2>多彩图标</h2>
-          <canvas id="qrcode" class="fragment" data-fragment-index="5"></canvas>
-          <div class="demo fragment" id="demo-github" data-fragment-index="1">
-            <div class="iconfont icon-github fragment" data-fragment-index="2">
-              <span></span>
-            </div>
-          </div>
+          <h2>icon font 优点</h2>
+          <ul>
+              <li>图标矢量化</li>
+              <li><a href="https://github.com/thx/cube/blob/gh-pages/src/iconfont-all.css#L52" target="_blank">让样式回归 CSS</a>
+<pre><code>
+<h2 class="icon-size">标题前面有一个图标</h2>
+.icon-size {
+    content: "\3436";
+}
+</code></pre>
+              </li>
+              <li>图标规范化</li>
+              <li>自动上传到阿里云CDN</li>
+          </ul>
+      </section>
+
+      <section>
+          <h2>icon font 缺点</h2>
+          <ul>
+              <li>色彩单一？</li>
+              <li>不同平台显示效果参差不齐</li>
+              <li>需要专门维护
+                <img src="img/iconfont.png" alt="">
+              </li>
+          </ul>
+      </section>
+
+    <section>
+        <h2>超越 icon font？</h2>
+        <p>见证奇迹的时刻到了！</p>
+    </section>
+
+    <section>
+      <h2>多彩图标</h2>
+      <canvas id="qrcode" class="fragment" data-fragment-index="5"></canvas>
+      <div class="demo fragment" id="demo-github" data-fragment-index="1">
+        <div class="iconfont icon-github fragment" data-fragment-index="2">
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+          <h2><a href="http://forecastfont.iconvau.lt/">多彩图标-镂空法</a></h2>
+          <img src="img/g2.jpg" alt="">
+          <p>放大后：<br><img src="img/g1.jpg" alt=""></p>
+      </section>
+
+      <section>
+          <h2><a href="http://forecastfont.iconvau.lt/">多彩图标-叠加法</a></h2>
+          <img src="http://gtms02.alicdn.com/tps/i2/T1MxyOFB4cXXaxJprD-606-407.png" alt="">
+      </section>
+      <section>
+          <img src="color-icon.png" alt="">
+      </section>
+
+        <section>
+            <h2><a href="http://jsbin.com/qixacoga/1/watch?css,output" target="_blank">响应式图标</a></h2>
+
+            <img src="http://uisdc.qiniudn.com/wp-content/uploads/2013/12/responsive-icons-animation.gif" alt="">
+        </section>
+        <section>
+            <h2><a href="http://jsbin.com/gutesepu/1" target="_blank">响应式图标</a></h2>
+            <h3>设计与辨识度的平衡</h3>
+            <img src="http://uisdc.qiniudn.com/wp-content/uploads/2013/10/sizes.png" alt="">
+        </section>
+
+        <section>
+            <h2>未来？</h2>
+            <h3>SVG 矢量动画图标</h3>
+            <a href="http://yisibl.github.io/loveicon/"><img src="img/love-icon.gif" alt=""></a>
+        </section>
+
+        <section>
+            <h2>SVG 矢量动画图标</h2>
+            <h3>livicons</h3>
+            <a href="http://livicons.com/#promo7">
+                <img src="img/icon-a.png" alt="">
+            </a>
+        </section>
+
+        <section>
+            <h2>SO SO?</h2>
+            <h3>神秘嘉宾</h3>
+            <img src="img/ghost.png" alt="">
+        </section>
+
+        <section>
+            <h2>神秘嘉宾</h2>
+            <p><img src="img/cang2.jpg" alt=""><br>
+            传说中苍老师的哥哥？</p>
         </section>
 
         <section>
           <h2>Q&A</h2>
           <h3>Thank You ^_^</h3>
         </section>
+        
       </div>
 
     </div>
@@ -233,6 +404,9 @@
         Powered by
         <a href="https://github.com/hakimel/reveal.js/" target="_blank">reveal.js</a>
       </p>
+    </div>
+    <div class="mux-logo">
+        <img src="http://gtms01.alicdn.com/tps/i1/T1PY5OFBXdXXcMmhDl-216-94.png" alt="">
     </div>
 
     <script src="lib/js/head.min.js"></script>

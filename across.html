@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  -->
+  <title>从跨屏幕开始</title>
+
+  <meta name="author" content="yisi">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="从跨屏幕开始">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name ="viewport" content ="initial-scale=1, maximum-scale=3, minimum-scale=1, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <link rel="stylesheet" href="css/demo/icon-github.css">
+
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+  <style>
+
+            .summary .line{
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            .summary .line a {
+                display: table-cell;
+                vertical-align: middle;
+                width: 180px;
+                text-align: center;
+            }
+            .summary .content{
+                display: table-cell;
+                vertical-align: middle;
+                padding-left: 20px;
+                text-align: left;
+                overflow: hidden;
+                *zoom:1;
+            }
+            .powered {
+                position: fixed;
+                left: 20px;
+                bottom: 20px;
+                color: #555;
+            }
+
+            .powered p {
+                margin: 6px auto;
+            }
+
+            .powered a {
+                color: #555;
+            }
+            .reveal[data-background-transition=slide]>.backgrounds .slide-background, .reveal>.backgrounds .slide-background[data-background-transition=slide] {
+                background-position: 50% 0%;
+                background-size: cover; /* 等比缩放到完全覆盖容器，背景图像有可能超出容器 */
+            }
+            .reveal .author {
+                margin-top: 100px;
+            }
+            .reveal .title {
+                margin-top: 60px;
+            }
+
+            .icon-box {
+                position: relative;
+                background: url(img/photo-icon.svg) 50% 50% no-repeat;
+                background-size: 66%;
+            }
+            .icon-box img {
+                width: 66%;
+            }
+            .fade-box{
+                position: relative;
+                min-height: 500px;
+            }
+            .fade-box img{
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto !important;
+            }
+            #qrcode{
+              position: fixed;
+              z-index: 9999;
+              top: 0;
+              right: -100px;
+              width: 320px;
+            }
+            .mux-logo {
+                position: fixed;
+                z-index: 999;
+                left: 20px;
+                top: 20px;
+            }
+        </style>
+        <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="js/socket.io.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.min.js"></script>
+        <script type="text/javascript">
+          var env;
+          $(function(){
+            $('#demo-github').click(function(){
+              $(this).toggleClass('active');
+            })
+          })
+
+          $.ajax({
+            url: 'http://localhost:3000/getEnv',
+            dataType: 'jsonp',
+            success: function(data){
+              env = data;
+
+              // draw qrcode
+              var qrcodedraw = new QRCodeLib.QRCodeDraw();
+              var request = ['http://', env.ip, ':', env.port, '/client'].join('');
+              qrcodedraw.draw(document.getElementById('qrcode'), request, function(error,canvas){
+                if(error){
+                  return console.log('Error =( ',error);
+                }
+              });
+            }
+          })
+          var socket = io.connect('http://localhost:3000');
+
+          socket.on('animate', function(){
+            if ($('#qrcode').css('display') !== 'none') {
+              $('#demo-github').toggleClass('active');
+            }
+          })
+        </script>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <!-- fragment -->
+        <section data-background-transition="slide" data-background="img/Google_Chrome_Racer.jpg">
+          <h1 class="title">从跨屏幕开始</h1>
+          <p class="author">
+            <a href="http://www.iyunlu.com/view" traget="blank">一丝 & 雪卒</a>
+            <br>2014-3-6 于杭州</p>
+        </section>
+
+        <section>
+          <h2>Q&A</h2>
+          <h3>Thank You ^_^</h3>
+        </section>
+        
+      </div>
+
+    </div>
+
+    <div class="powered">
+      <p>从跨屏幕开始</p>
+      <p>
+        Powered by
+        <a href="https://github.com/hakimel/reveal.js/" target="_blank">reveal.js</a>
+      </p>
+    </div>
+<!--     <div class="mux-logo">
+        <img src="http://gtms01.alicdn.com/tps/i1/T1PY5OFBXdXXcMmhDl-216-94.png" alt="">
+    </div> -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                mouseWheel: false,
+                keyboard: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Parallax scrolling
+                // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+                // parallaxBackgroundSize: '2100px 900px',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+        </script>
+</body>
+  </html>
