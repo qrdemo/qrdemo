@@ -137,11 +137,13 @@
           })
 
           var socket = io.connect('http://localhost:3000');
-          socket.on('left', function(){
+          socket.emit('ppt');
+
+          socket.on('ppt left', function(){
             Reveal.left();
           });
 
-          socket.on('right', function(){
+          socket.on('ppt right', function(){
             Reveal.right();
           });
         </script>
