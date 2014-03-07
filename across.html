@@ -94,12 +94,8 @@
                 right: 0;
                 margin: auto !important;
             }
-            #qrcode{
-              position: fixed;
-              z-index: 9999;
-              top: 0;
-              right: -100px;
-              width: 320px;
+            .qrcode{
+              width: 500px;
             }
             .mux-logo {
                 position: fixed;
@@ -128,7 +124,7 @@
               // draw qrcode
               var qrcodedraw = new QRCodeLib.QRCodeDraw();
               var request = ['http://', env.ip, ':', env.port, '/mobile/control'].join('');
-              qrcodedraw.draw(document.querySelector('#qrcode'), request, function(err){
+              qrcodedraw.draw(document.querySelector('.qrcode'), request, function(err){
                 if(err){
                   return console.log(err.message);
                 }
@@ -156,7 +152,7 @@
     <div class="slides">
         <!-- qrcode -->
         <section>
-          <canvas id="qrcode"></canvas>
+          <canvas class="qrcode"></canvas>
         </section>
 
         <!-- fragment -->
@@ -173,6 +169,47 @@
         </section>
 
         <section>
+          <h2>多彩图标</h2>
+          <div class="demo fragment" id="demo-github" data-fragment-index="1">
+            <div class="iconfont icon-github fragment" data-fragment-index="2">
+              <span></span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+            <h2>开工</h2>
+            <h3 class="fragment">Viewport</h3>
+<pre class="fragment"><code>
+<meta name ="viewport" content ="
+    initial-scale=1, maximum-scale=3, 
+    minimum-scale=1">
+</code></pre>
+        </section>
+
+        <section>
+            <h2>去掉链接点击遮罩</h2>
+<pre class="fragment"><code>
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}    
+</code></pre>            
+        </section>
+
+        <section>
+            <h2>盒模型</h2>
+<pre class="fragment"><code>
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+</code></pre>              
+        </section>
+
+        <section>
             <h2>移动平台的坑</h2>
         </section>
 
@@ -181,26 +218,52 @@
             <p class="fragment">需要给 document 绑定 touchstart 或 touchend 事件</p>
 <pre class="fragment"><code>
 <script>
-    document.addEventListener('touchstart',function(){},false);
+    document.addEventListener
+        ('touchstart',function(){},false);
 </script>
+</code></pre>
+        </section>
+        <section>
+            <h2>:active 伪类失效</h2>
+            <div class="button fragment"><img src="img/mm.gif" alt=""></div>
+<pre class="fragment"><code>
+.button:active img {
+    top: 4px;
+    box-shadow: inset 0 -1px 1px #E5BB93, ...;
+}
 </code></pre>
         </section>
 
         <section>
             <h2>Click 300ms 延迟</h2>
-            <p class="fragment">
-                使用封装的 tap 事件来代替click 事件
-            </p>
-            <p class="fragment">
-               tap 事件由 touchstart 事件 + touchmove 判断 + touchend 事件封装
-            </p>
-            <p class="fragment">
-                <a href="https://github.com/ftlabs/fastclick">fastclick</a>
-            </p>
+            <ul>
+                <li class="fragment">
+                    使用封装的 tap 事件来代替click 事件
+                </li>
+                <li class="fragment">
+                   tap 事件由 touchstart 事件 + touchmove 判断 + touchend 事件封装
+                </li>
+                <li class="fragment">
+                    <a href="https://github.com/ftlabs/fastclick">fastclick</a>
+                </li>
+                <li class="fragment">修复 IE 移动端 300ms 延迟
+<pre class="fragment"><code>
+a[href], button, input {
+    -ms-touch-action: manipulation; /* IE10  */
+    touch-action: none; /* Chrome */
+    touch-action: manipulation;     /* IE11+ */
+} 
+</code></pre>
+                </li>
+            </ul>
         </section>
 
         <section>
-          <h6>Powered by</h6>
+            <h2>驱动？</h2>
+        </section>
+
+        <section>
+          <p>Powered by</p>
           <h2>Express, Socket.io</h2>
         </section>
 
